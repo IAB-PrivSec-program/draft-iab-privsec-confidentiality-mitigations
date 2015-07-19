@@ -218,7 +218,7 @@ Data minimization  strategies should thus be applied to any data left
 unencrypted, whether it be payload or metadata.  Information that cannot 
 be encrypted or omited should be be dissociated from other
 information.  For example, the Tor overlay routing network anonymizes
-IP addresses of by using multi-hop onion routing.
+IP addresses of users by using multi-hop onion routing.
 
 
 As with traditional, limited active attacks, the basic mitigation to
@@ -249,7 +249,7 @@ approaches to anonymization against traffic analysis include:
  flows appear to be destined to the same point, which leaks very little
  information.  Even when traffic analysis is being performed both
  before and after the mid-point, simultaneous connections may make it 
- difficult to corelate the traffic going into and out of the mid-point.
+ difficult to correlate the traffic going into and out of the mid-point.
  For this to be effective as a mitigation, traffic to the mid-point must
  be encrypted and traffic from the mid-point should be.
 
