@@ -326,7 +326,7 @@ were to provide an attacker with full access, the attacker would still
 not be able to read the protected parts of the message.
 
 Mechanisms like S/MIME and PGP are often referred to as
-"end-to-end"security mechanisms, as opposed to "hop-by-hop" or
+"end-to-end" security mechanisms, as opposed to "hop-by-hop" or
 "end-to-middle" mechanisms like the use of SMTP over TLS.  These two
 different mechanisms address different types of attackers: Hop-by-hop
 mechanisms protect from attackers on the wire (passive or active),
@@ -370,7 +370,7 @@ already exist.  As Edward Snowden put it, "properly implemented strong
 crypto systems are one of the few things you can rely on".
 The task for the Internet community is to ensure that applications are
 able to use the strong crypto systems we have defined - for example,
-TLS with PFS ciphersuites - and that these properly implemented.
+TLS with PFS ciphersuites - and that these are properly implemented.
 (And, one might add, turned on!) Some of this work will require
 architectural changes to applications, e. g., in order to limit the
 information that is exposed to servers.  In many other cases, however,
