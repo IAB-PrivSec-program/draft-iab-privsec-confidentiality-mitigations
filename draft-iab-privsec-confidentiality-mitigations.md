@@ -218,7 +218,7 @@ Data minimization  strategies should thus be applied to any data left
 unencrypted, whether it be payload or metadata.  Information that cannot 
 be encrypted or omited should be be dissociated from other
 information.  For example, the Tor overlay routing network anonymizes
-IP addresses of by using multi-hop onion routing.
+IP addresses of users by using multi-hop onion routing.
 
 
 As with traditional, limited active attacks, the basic mitigation to
@@ -249,7 +249,7 @@ approaches to anonymization against traffic analysis include:
  flows appear to be destined to the same point, which leaks very little
  information.  Even when traffic analysis is being performed both
  before and after the mid-point, simultaneous connections may make it 
- difficult to corelate the traffic going into and out of the mid-point.
+ difficult to correlate the traffic going into and out of the mid-point.
  For this to be effective as a mitigation, traffic to the mid-point must
  be encrypted and traffic from the mid-point should be.
 
@@ -293,7 +293,7 @@ The Internet Key Exchange (IKE) protocol used by IPsec supports PFS by
 default {{RFC4306}}, and TLS supports PFS via the use of specific
 ciphersuites {{RFC5246}}.
 
-Dynamic key exfiltration cannot be prevent by protocol means.  By
+Dynamic key exfiltration cannot be prevented by protocol means.  By
 definition, any secrets that are used in the protocol will be
 transmitted to the attacker and used to decrypt what the protocol
 encrypts.  Likewise, no technical means will stop a willing
@@ -326,7 +326,7 @@ were to provide an attacker with full access, the attacker would still
 not be able to read the protected parts of the message.
 
 Mechanisms like S/MIME and PGP are often referred to as
-"end-to-end"security mechanisms, as opposed to "hop-by-hop" or
+"end-to-end" security mechanisms, as opposed to "hop-by-hop" or
 "end-to-middle" mechanisms like the use of SMTP over TLS.  These two
 different mechanisms address different types of attackers: Hop-by-hop
 mechanisms protect from attackers on the wire (passive or active),
@@ -370,7 +370,7 @@ already exist.  As Edward Snowden put it, "properly implemented strong
 crypto systems are one of the few things you can rely on".
 The task for the Internet community is to ensure that applications are
 able to use the strong crypto systems we have defined - for example,
-TLS with PFS ciphersuites - and that these properly implemented.
+TLS with PFS ciphersuites - and that these are properly implemented.
 (And, one might add, turned on!) Some of this work will require
 architectural changes to applications, e. g., in order to limit the
 information that is exposed to servers.  In many other cases, however,
@@ -415,7 +415,7 @@ query traffic and responses.  If a client wished to ensure that its
 traffic did not expose this data, it would need to require that its
 stub resolver emit any privacy-sensitive queries with a source
 NETMASK set to 0, as detailed in Section 5.1 of {{I-D.draft-ietf-dnsop-edns-client-subnet}}.  Given that setting
-this only occasionally might also be used a signal to observors,
+this only occasionally might also be used as a signal to observors,
 any client wishing to have any privacy sensitive traffic would,
 in essence have to emit this for every query.  While this would
 succeed at providing the required privacy, given the mechanism
