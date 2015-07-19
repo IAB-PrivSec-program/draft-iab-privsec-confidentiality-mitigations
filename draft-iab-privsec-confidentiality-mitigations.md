@@ -293,7 +293,7 @@ The Internet Key Exchange (IKE) protocol used by IPsec supports PFS by
 default {{RFC4306}}, and TLS supports PFS via the use of specific
 ciphersuites {{RFC5246}}.
 
-Dynamic key exfiltration cannot be prevent by protocol means.  By
+Dynamic key exfiltration cannot be prevented by protocol means.  By
 definition, any secrets that are used in the protocol will be
 transmitted to the attacker and used to decrypt what the protocol
 encrypts.  Likewise, no technical means will stop a willing
@@ -415,7 +415,7 @@ query traffic and responses.  If a client wished to ensure that its
 traffic did not expose this data, it would need to require that its
 stub resolver emit any privacy-sensitive queries with a source
 NETMASK set to 0, as detailed in Section 5.1 of {{I-D.draft-ietf-dnsop-edns-client-subnet}}.  Given that setting
-this only occasionally might also be used a signal to observors,
+this only occasionally might also be used as a signal to observors,
 any client wishing to have any privacy sensitive traffic would,
 in essence have to emit this for every query.  While this would
 succeed at providing the required privacy, given the mechanism
