@@ -57,7 +57,7 @@ informative:
 
 --- abstract
 
-The IAB has published {{RFC7624t}} in response to several revelations 
+The IAB has published {{RFC7624}} in response to several revelations 
 of pervasive attack on Internet communications.  In this document we 
 survey the mitigations to those threats which are currently available 
 or which might plausibly be deployed.  We discuss these primarily in 
