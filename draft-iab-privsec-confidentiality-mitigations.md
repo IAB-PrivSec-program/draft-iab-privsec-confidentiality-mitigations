@@ -40,8 +40,8 @@ informative:
     target: http://convergenc.io
     title:  Convergence Project
     author:
-      Moxie Marlinspike
-      ins: M Marlinspike
+      name: Moxie Marlinspike
+      ins:  M Marlinspike
     date:  2011-08
   I-D.ietf-dnsop-edns-client-subnet:
   STRINT:
