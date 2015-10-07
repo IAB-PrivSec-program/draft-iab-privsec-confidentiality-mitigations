@@ -428,7 +428,7 @@ the likelihood that a pervasive monitor would be able to associate
 query traffic and responses.  If a client wished to ensure that its
 traffic did not expose this data, it would need to require that its
 stub resolver emit any privacy-sensitive queries with a source
-NETMASK set to 0, as detailed in Section 5.1 of {{I-D.draft-ietf-dnsop-edns-client-subnet}}.  Given that setting
+NETMASK set to 0, as detailed in Section 5.1 of {{I-D.ietf-dnsop-edns-client-subnet}}.  Given that setting
 this only occasionally might also be used a signal to observors,
 any client wishing to have any privacy sensitive traffic would,
 in essence have to emit this for every query.  While this would
