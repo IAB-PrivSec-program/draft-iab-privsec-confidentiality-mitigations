@@ -25,7 +25,7 @@ normative:
   RFC4949:
   RFC6973:
   RFC7258:
-  I-D.iab-privsec-confidentiality-threat:
+  RFC7624:
 
 informative:
 
@@ -36,6 +36,13 @@ informative:
   RFC4306:
   RFC5246:
   RFC2015:
+  Convergence:
+    target: http://convergenc.io
+    title:  Convergence Project
+    author:
+      Moxie Marlinspike
+      ins: M Marlinspike
+    date:  2011-08
   I-D.ietf-dnsop-edns-client-subnet:
   STRINT:
     target: https://www.w3.org/2014/strint/draft-iab-strint-report.html
@@ -50,13 +57,12 @@ informative:
 
 --- abstract
 
-The IAB has published {{I-D.iab-privsec-confidentiality-threat}} in
-response to several revelations of pervasive attack on Internet
-communications.  In this document we survey the mitigations to those
-threats which are currently available or which might plausibly be
-deployed.  We discuss these primarily in the context of Internet
-protocol design, focusing on robustness to pervasive monitoring and
-avoidance of unwanted cross-mitigation impacts.
+The IAB has published {{RFC7624t}} in response to several revelations 
+of pervasive attack on Internet communications.  In this document we 
+survey the mitigations to those threats which are currently available 
+or which might plausibly be deployed.  We discuss these primarily in 
+the context of Internet protocol design, focusing on robustness to 
+pervasive monitoring and avoidance of unwanted cross-mitigation impacts.
 
 --- middle
 
@@ -66,10 +72,9 @@ Introduction        {#intro}
 To ensure that the Internet can be trusted by users, it is necessary
 for the Internet technical community to address the vulnerabilities
 exploited in the attacks document in {{RFC7258}} and the threats
-described in {{I-D.iab-privsec-confidentiality-threat}}.  The goal of
-this document is to describe more precisely the mitigations available
-for those threats and to lay out the interactions among them should
-they be deployed in combination.
+described in {{RFC7624}}.  The goal of this document is to describe 
+more precisely the mitigations available for those threats and to 
+lay out the interactions among them should they be deployed in combination.
 
 
 # Terminology {#terminology}
@@ -146,11 +151,11 @@ Available Mitigations	{#responses}
 =====================
 
 Given the threat model laid out in
-{{I-D.iab-privsec-confidentiality-threat}}., how should the Internet
-technical community respond to pervasive attack?  The cost and risk
-considerations discussed in it provide a guide to responses.  Namely,
-responses to passive attack should close off avenues for those attacks that
-are safe, scalable, and cheap, forcing the attacker to mount attacks
+{{RFC7624}}., how should the Internet technical community respond 
+to pervasive attack?  The cost and risk considerations discussed in 
+it provide a guide to responses.  Namely, responses to passive attack 
+should close off avenues for those attacks that are safe, scalable, 
+and cheap, forcing the attacker to mount attacks
 that expose it to higher cost and risk.  Protocols and security measures
 protecting against active attacks must also limit the impact of 
 compromise and malfeasance by avoiding systems which grant universal
@@ -192,7 +197,9 @@ using TLS or IPsec {{RFC5246}}{{RFC4301}}.  Even without authentication,
 encryption will prevent a passive attacker from being able to read the
 encrypted content.  Exploiting unauthenticated encryption requires an
 active attack (man in the middle); with authentication, a key
-exfiltration attack is required.
+exfiltration attack is required.  For cryptographic systems providing
+forward secrecy, even exfiltration of long-term keys will not compromise
+data captured under session keys used before the exfiltration.
 
 The additional capabilities of a pervasive passive attacker, however,
 require some changes in how protocol designers evaluate what
@@ -231,7 +238,8 @@ monitor these authorities to detect misbehavior that could enable
 active attack.  For example, DANE and Certificate Transparency both
 provide mechanisms for detecting when a CA has issued a certificate
 for a domain name without the authorization of the holder of that
-domain name {{RFC6962}}{{RFC6698}}.
+domain name {{RFC6962}}{{RFC6698}}. Other systems may use external
+notaries to detect certificate authority mismatch (e.g. Convergence {{Convergence}}).
 
 While encryption and authentication protect the security of individual
 sessions, these sessions may still leak information, such as IP
@@ -293,7 +301,7 @@ The Internet Key Exchange (IKE) protocol used by IPsec supports PFS by
 default {{RFC4306}}, and TLS supports PFS via the use of specific
 ciphersuites {{RFC5246}}.
 
-Dynamic key exfiltration cannot be prevent by protocol means.  By
+Dynamic key exfiltration cannot be prevented by protocol means.  By
 definition, any secrets that are used in the protocol will be
 transmitted to the attacker and used to decrypt what the protocol
 encrypts.  Likewise, no technical means will stop a willing
