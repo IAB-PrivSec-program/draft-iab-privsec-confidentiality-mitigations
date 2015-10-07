@@ -51,6 +51,12 @@ informative:
       name: Stephen Farrell
       ins: S Farrell
     date: 2014-04-06
+  TOR:
+    target: https://www.torproject.org/
+    title: "Tor"
+    author:
+      organization: The Tor Project
+    date: 2013
 
 
 
@@ -224,7 +230,7 @@ protected by encryption it may leak substantial amounts of information.
 Data minimization  strategies should thus be applied to any data left 
 unencrypted, whether it be payload or metadata.  Information that cannot 
 be encrypted or omited should be be dissociated from other
-information.  For example, the Tor overlay routing network anonymizes
+information.  For example, the TOR {{TOR}}overlay routing network anonymizes
 IP addresses of by using multi-hop onion routing.
 
 
