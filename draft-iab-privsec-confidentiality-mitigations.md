@@ -2,7 +2,7 @@
 title: Confidentiality in the Face of Pervasive Surveillance
 abbrev: privsec-mitigations 
 docname: draft-iab-privsec-confidentiality-mitigations-latest
-date: 2015-06-02
+date: 2015-10-14
 category: info
 
 ipr: trust200902
@@ -231,14 +231,14 @@ Data minimization  strategies should thus be applied to any data left
 unencrypted, whether it be payload or metadata.  Information that cannot 
 be encrypted or omited should be be dissociated from other
 information.  For example, the TOR {{TOR}}overlay routing network anonymizes
-IP addresses of by using multi-hop onion routing.
+IP addresses by using multi-hop onion routing.
 
 
-As with traditional, limited active attacks, the basic mitigation to
+As with traditional, limited active attacks, a basic mitigation to
 pervasive active attack is to enable the endpoints of a communication
-to authenticate each other.  However, attackers that can mount
-pervasive active attacks can often subvert the authorities on which
-authentication systems rely.  Thus, in order to make authentication
+to authenticate each other over the encrypted channel.  However, attackers 
+that can mount pervasive active attacks can often subvert the authorities 
+on which authentication systems rely.  Thus, in order to make authentication
 systems more resilient to pervasive attack, it is beneficial to
 monitor these authorities to detect misbehavior that could enable
 active attack.  For example, DANE and Certificate Transparency both
@@ -421,7 +421,7 @@ various link-local discovery protocols.
 For mitigations which rely on aggregation to separate the origin of
 traffic from its destination, care must be taken that the protocol
 mechanics do not expose origin IP through secondary means. {{I-D.ietf-dnsop-edns-client-subnet}}
-for example, proposes a method to carry the IP address or subnet
+for example, documents a method to carry the IP address or subnet
 of a querying party through a recursive resolver to an authoritative
 resolver.  Even with a truncated IP address, this mechanism increases
 the likelihood that a pervasive monitor would be able to associate
