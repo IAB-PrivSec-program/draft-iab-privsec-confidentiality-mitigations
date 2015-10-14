@@ -1,0 +1,762 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head profile="http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/">
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+
+  <title>Confidentiality in the Face of Pervasive Surveillance</title>
+
+  <style type="text/css" title="Xml2Rfc (sans serif)">
+  /*<![CDATA[*/
+	  a {
+	  text-decoration: none;
+	  }
+      /* info code from SantaKlauss at http://www.madaboutstyle.com/tooltip2.html */
+      a.info {
+          /* This is the key. */
+          position: relative;
+          z-index: 24;
+          text-decoration: none;
+      }
+      a.info:hover {
+          z-index: 25;
+          color: #FFF; background-color: #900;
+      }
+      a.info span { display: none; }
+      a.info:hover span.info {
+          /* The span will display just on :hover state. */
+          display: block;
+          position: absolute;
+          font-size: smaller;
+          top: 2em; left: -5em; width: 15em;
+          padding: 2px; border: 1px solid #333;
+          color: #900; background-color: #EEE;
+          text-align: left;
+      }
+	  a.smpl {
+	  color: black;
+	  }
+	  a:hover {
+	  text-decoration: underline;
+	  }
+	  a:active {
+	  text-decoration: underline;
+	  }
+	  address {
+	  margin-top: 1em;
+	  margin-left: 2em;
+	  font-style: normal;
+	  }
+	  body {
+	  color: black;
+	  font-family: verdana, helvetica, arial, sans-serif;
+	  font-size: 10pt;
+	  max-width: 55em;
+	  
+	  }
+	  cite {
+	  font-style: normal;
+	  }
+	  dd {
+	  margin-right: 2em;
+	  }
+	  dl {
+	  margin-left: 2em;
+	  }
+	
+	  ul.empty {
+	  list-style-type: none;
+	  }
+	  ul.empty li {
+	  margin-top: .5em;
+	  }
+	  dl p {
+	  margin-left: 0em;
+	  }
+	  dt {
+	  margin-top: .5em;
+	  }
+	  h1 {
+	  font-size: 14pt;
+	  line-height: 21pt;
+	  page-break-after: avoid;
+	  }
+	  h1.np {
+	  page-break-before: always;
+	  }
+	  h1 a {
+	  color: #333333;
+	  }
+	  h2 {
+	  font-size: 12pt;
+	  line-height: 15pt;
+	  page-break-after: avoid;
+	  }
+	  h3, h4, h5, h6 {
+	  font-size: 10pt;
+	  page-break-after: avoid;
+	  }
+	  h2 a, h3 a, h4 a, h5 a, h6 a {
+	  color: black;
+	  }
+	  img {
+	  margin-left: 3em;
+	  }
+	  li {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  ol {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  ol p {
+	  margin-left: 0em;
+	  }
+	  p {
+	  margin-left: 2em;
+	  margin-right: 2em;
+	  }
+	  pre {
+	  margin-left: 3em;
+	  background-color: lightyellow;
+	  padding: .25em;
+	  }
+	  pre.text2 {
+	  border-style: dotted;
+	  border-width: 1px;
+	  background-color: #f0f0f0;
+	  width: 69em;
+	  }
+	  pre.inline {
+	  background-color: white;
+	  padding: 0em;
+	  }
+	  pre.text {
+	  border-style: dotted;
+	  border-width: 1px;
+	  background-color: #f8f8f8;
+	  width: 69em;
+	  }
+	  pre.drawing {
+	  border-style: solid;
+	  border-width: 1px;
+	  background-color: #f8f8f8;
+	  padding: 2em;
+	  }
+	  table {
+	  margin-left: 2em;
+	  }
+	  table.tt {
+	  vertical-align: top;
+	  }
+	  table.full {
+	  border-style: outset;
+	  border-width: 1px;
+	  }
+	  table.headers {
+	  border-style: outset;
+	  border-width: 1px;
+	  }
+	  table.tt td {
+	  vertical-align: top;
+	  }
+	  table.full td {
+	  border-style: inset;
+	  border-width: 1px;
+	  }
+	  table.tt th {
+	  vertical-align: top;
+	  }
+	  table.full th {
+	  border-style: inset;
+	  border-width: 1px;
+	  }
+	  table.headers th {
+	  border-style: none none inset none;
+	  border-width: 1px;
+	  }
+	  table.left {
+	  margin-right: auto;
+	  }
+	  table.right {
+	  margin-left: auto;
+	  }
+	  table.center {
+	  margin-left: auto;
+	  margin-right: auto;
+	  }
+	  caption {
+	  caption-side: bottom;
+	  font-weight: bold;
+	  font-size: 9pt;
+	  margin-top: .5em;
+	  }
+	
+	  table.header {
+	  border-spacing: 1px;
+	  width: 95%;
+	  font-size: 10pt;
+	  color: white;
+	  }
+	  td.top {
+	  vertical-align: top;
+	  }
+	  td.topnowrap {
+	  vertical-align: top;
+	  white-space: nowrap; 
+	  }
+	  table.header td {
+	  background-color: gray;
+	  width: 50%;
+	  }
+	  table.header a {
+	  color: white;
+	  }
+	  td.reference {
+	  vertical-align: top;
+	  white-space: nowrap;
+	  padding-right: 1em;
+	  }
+	  thead {
+	  display:table-header-group;
+	  }
+	  ul.toc, ul.toc ul {
+	  list-style: none;
+	  margin-left: 1.5em;
+	  margin-right: 0em;
+	  padding-left: 0em;
+	  }
+	  ul.toc li {
+	  line-height: 150%;
+	  font-weight: bold;
+	  font-size: 10pt;
+	  margin-left: 0em;
+	  margin-right: 0em;
+	  }
+	  ul.toc li li {
+	  line-height: normal;
+	  font-weight: normal;
+	  font-size: 9pt;
+	  margin-left: 0em;
+	  margin-right: 0em;
+	  }
+	  li.excluded {
+	  font-size: 0pt;
+	  }
+	  ul p {
+	  margin-left: 0em;
+	  }
+	
+	  .comment {
+	  background-color: yellow;
+	  }
+	  .center {
+	  text-align: center;
+	  }
+	  .error {
+	  color: red;
+	  font-style: italic;
+	  font-weight: bold;
+	  }
+	  .figure {
+	  font-weight: bold;
+	  text-align: center;
+	  font-size: 9pt;
+	  }
+	  .filename {
+	  color: #333333;
+	  font-weight: bold;
+	  font-size: 12pt;
+	  line-height: 21pt;
+	  text-align: center;
+	  }
+	  .fn {
+	  font-weight: bold;
+	  }
+	  .hidden {
+	  display: none;
+	  }
+	  .left {
+	  text-align: left;
+	  }
+	  .right {
+	  text-align: right;
+	  }
+	  .title {
+	  color: #990000;
+	  font-size: 18pt;
+	  line-height: 18pt;
+	  font-weight: bold;
+	  text-align: center;
+	  margin-top: 36pt;
+	  }
+	  .vcardline {
+	  display: block;
+	  }
+	  .warning {
+	  font-size: 14pt;
+	  background-color: yellow;
+	  }
+	
+	
+	  @media print {
+	  .noprint {
+		display: none;
+	  }
+	
+	  a {
+		color: black;
+		text-decoration: none;
+	  }
+	
+	  table.header {
+		width: 90%;
+	  }
+	
+	  td.header {
+		width: 50%;
+		color: black;
+		background-color: white;
+		vertical-align: top;
+		font-size: 12pt;
+	  }
+	
+	  ul.toc a::after {
+		content: leader('.') target-counter(attr(href), page);
+	  }
+	
+	  ul.ind li li a {
+		content: target-counter(attr(href), page);
+	  }
+	
+	  .print2col {
+		column-count: 2;
+		-moz-column-count: 2;
+		column-fill: auto;
+	  }
+	  }
+	
+	  @page {
+	  @top-left {
+		   content: "Internet-Draft"; 
+	  } 
+	  @top-right {
+		   content: "December 2010"; 
+	  } 
+	  @top-center {
+		   content: "Abbreviated Title";
+	  } 
+	  @bottom-left {
+		   content: "Doe"; 
+	  } 
+	  @bottom-center {
+		   content: "Expires June 2011"; 
+	  } 
+	  @bottom-right {
+		   content: "[Page " counter(page) "]"; 
+	  } 
+	  }
+	
+	  @page:first { 
+		@top-left {
+		  content: normal;
+		}
+		@top-right {
+		  content: normal;
+		}
+		@top-center {
+		  content: normal;
+		}
+	  }
+  /*]]>*/
+  </style>
+  <style type="text/css">
+@viewport {
+  zoom: 1.0;
+  width: extend-to-zoom;
+}
+
+@-ms-viewport {
+  width: extend-to-zoom;
+  zoom: 1.0;
+}
+
+body {
+  font: 11pt cambria, helvetica, arial, sans-serif;
+  font-size-adjust: 0.5;
+  line-height: 130%;
+  margin: 1em auto;
+  max-width: 700px;
+}
+
+.title, .filename, h1, h2, h3, h4 {
+  font-family: candara, helvetica, arial, sans-serif;
+  font-size-adjust: 0.5;
+}
+.title { font-size: 150%; }
+h1 { font-size: 130%; }
+h2 { font-size: 120%; }
+h3, h4 { font-size: 110%; }
+ul.toc >li { font-size: 95%; }
+ul.toc >li >ul, .figure, caption { font-size: 90%; }
+
+table {
+  margin-left: 0em;
+}
+table.header {
+  width: 100%;
+}
+
+table.header td {
+  background-color: inherit;
+  color: black;
+}
+
+samp, tt, code, pre {
+  font: 11pt consolas, monospace;
+  font-size-adjust: none;
+}
+
+pre.text, pre.text2 {
+  width: 90%;
+}
+
+dt {
+  float: left; clear: left;
+  margin: 0.5em 0.5em 0 0;
+}
+dt:first-child {
+  margin-top: 0;
+}
+dd {
+  margin: 0.5em 0 0 2em;
+}
+dd p, dd ul {
+  margin-top: 0; margin-bottom: 0;
+}
+dd *+p {
+  margin-top: 0.5em;
+}
+
+ol, ul {
+  padding: 0;
+  margin: 0.5em 0 0.5em 2em;
+}
+ul.toc, ul.toc ul { 
+  margin: 0 0 0 1.5em;
+}
+ul.toc a:first-child { 
+  display: inline-block; 
+  min-width: 1.2em;
+}  </style>
+
+  <link href="#rfc.toc" rel="Contents"/>
+<link href="#rfc.section.1" rel="Chapter" title="1 Introduction"/>
+<link href="#rfc.section.2" rel="Chapter" title="2 Terminology"/>
+<link href="#rfc.section.3" rel="Chapter" title="3 Available Mitigations"/>
+<link href="#rfc.section.4" rel="Chapter" title="4 Interplay among Mitigations"/>
+<link href="#rfc.section.5" rel="Chapter" title="5 IANA Considerations"/>
+<link href="#rfc.section.6" rel="Chapter" title="6 Security Considerations"/>
+<link href="#rfc.section.7" rel="Chapter" title="7 Contributors {Contributors}"/>
+<link href="#rfc.references" rel="Chapter" title="8 References"/>
+<link href="#rfc.references.1" rel="Chapter" title="8.1 Normative References"/>
+<link href="#rfc.references.2" rel="Chapter" title="8.2 Informative References"/>
+<link href="#rfc.authors" rel="Chapter"/>
+
+
+  <meta name="generator" content="xml2rfc version 2.4.7 - http://tools.ietf.org/tools/xml2rfc" />
+  <link rel="schema.dct" href="http://purl.org/dc/terms/" />
+
+  <meta name="dct.creator" content="Hardie, T., Ed." />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-iab-privsec-confidentiality-mitigations-latest" />
+  <meta name="dct.issued" scheme="ISO8601" content="2015-10-14" />
+  <meta name="dct.abstract" content="The IAB has published " />
+  <meta name="description" content="The IAB has published " />
+
+</head>
+
+<body>
+
+  <table class="header">
+    <tbody>
+    
+    	<tr>
+  <td class="left">IAB</td>
+  <td class="right">T. Hardie, Ed.</td>
+</tr>
+<tr>
+  <td class="left">Internet-Draft</td>
+  <td class="right"></td>
+</tr>
+<tr>
+  <td class="left">Intended status: Informational</td>
+  <td class="right">October 14, 2015</td>
+</tr>
+<tr>
+  <td class="left">Expires: April 16, 2016</td>
+  <td class="right"></td>
+</tr>
+
+    	
+    </tbody>
+  </table>
+
+  <p class="title">Confidentiality in the Face of Pervasive Surveillance<br />
+  <span class="filename">draft-iab-privsec-confidentiality-mitigations-03</span></p>
+  
+  <h1 id="rfc.abstract">
+  <a href="#rfc.abstract">Abstract</a>
+</h1>
+<p>The IAB has published <a href="#RFC7624">[RFC7624]</a> in response to several revelations of pervasive attack on Internet communications.  In this document we survey the mitigations to those threats which are currently available or which might plausibly be deployed.  We discuss these primarily in the context of Internet protocol design, focusing on robustness to pervasive monitoring and avoidance of unwanted cross-mitigation impacts.</p>
+<h1 id="rfc.status">
+  <a href="#rfc.status">Status of This Memo</a>
+</h1>
+<p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
+<p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
+<p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
+<p>This Internet-Draft will expire on April 16, 2016.</p>
+<h1 id="rfc.copyrightnotice">
+  <a href="#rfc.copyrightnotice">Copyright Notice</a>
+</h1>
+<p>Copyright (c) 2015 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
+<p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (http://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
+
+  
+  <hr class="noprint" />
+  <h1 class="np" id="rfc.toc"><a href="#rfc.toc">Table of Contents</a></h1>
+  <ul class="toc">
+
+  	<li>1.   <a href="#rfc.section.1">Introduction</a></li>
+<li>2.   <a href="#rfc.section.2">Terminology</a></li>
+<li>3.   <a href="#rfc.section.3">Available Mitigations</a></li>
+<li>4.   <a href="#rfc.section.4">Interplay among Mitigations</a></li>
+<li>5.   <a href="#rfc.section.5">IANA Considerations</a></li>
+<li>6.   <a href="#rfc.section.6">Security Considerations</a></li>
+<li>7.   <a href="#rfc.section.7">Contributors {Contributors}</a></li>
+<li>8.   <a href="#rfc.references">References</a></li>
+<li>8.1.   <a href="#rfc.references.1">Normative References</a></li>
+<li>8.2.   <a href="#rfc.references.2">Informative References</a></li>
+<li><a href="#rfc.authors">Author's Address</a></li>
+
+
+  </ul>
+
+  <h1 id="rfc.section.1"><a href="#rfc.section.1">1.</a> <a href="#intro" id="intro">Introduction</a></h1>
+<p id="rfc.section.1.p.1">To ensure that the Internet can be trusted by users, it is necessary for the Internet technical community to address the vulnerabilities exploited in the attacks document in <a href="#RFC7258">[RFC7258]</a> and the threats described in <a href="#RFC7624">[RFC7624]</a>.  The goal of this document is to describe more precisely the mitigations available for those threats and to lay out the interactions among them should they be deployed in combination.</p>
+<h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> <a href="#terminology" id="terminology">Terminology</a></h1>
+<p id="rfc.section.2.p.1">This document makes extensive use of standard security and privacy terminology; see <a href="#RFC4949">[RFC4949]</a> and <a href="#RFC6973">[RFC6973]</a>. Terms used from <a href="#RFC6973">[RFC6973]</a> include Eavesdropper, Observer, Initiator, Intermediary, Recipient, Attack (in a privacy context), Correlation, Fingerprint, Traffic Analysis, and Identifiability (and related terms). In addition, we use a few terms that are specific to the attacks discussed in this document. Note especially that &#8220;passive&#8221; and &#8220;active&#8221; below do not refer to the effort used to mount the attack; a &#8220;passive attack&#8221; is any attack that accesses a flow but does not modify it, while an &#8220;active attack&#8221; is any attack that modifies a flow.  Some passive attacks involve active interception and modifications of devices, rather than simple access to the medium.  The introduced terms are:</p>
+<p/>
+
+<dl>
+  <dt>Pervasive Attack:</dt>
+  <dd style="margin-left: 8">An attack on Internet communications that makes use of access at a large number of points in the network, or otherwise provides the attacker with access to a large amount of Internet traffic; see <a href="#RFC7258">[RFC7258]</a>.</dd>
+  <dt>Passive Pervasive Attack:  </dt>
+  <dd style="margin-left: 8">An eavesdropping attack undertaken by a pervasive attacker, in which the packets in a traffic stream between two endpoints are intercepted, but in which the attacker does not modify the packets in the traffic stream between two endpoints, modify the treatment of packets in the traffic stream (e.g. delay, routing), or add or remove packets in the traffic stream. Passive pervasive attacks are undetectable from the endpoints.  Equivalent to passive wiretapping as defined in <a href="#RFC4949">[RFC4949]</a>; we use an alternate term here since the methods employed are wider than those implied by the word &#8220;wiretapping&#8221;, including the active compromise of intermediate systems.</dd>
+  <dt>Active Pervasive Attack:</dt>
+  <dd style="margin-left: 8">An attack undertaken by a pervasive attacker, which in addition to the elements of a passive pervasive attack, also includes modification, addition, or removal of packets in a traffic stream, or modification of treatment of packets in the traffic stream. Active pervasive attacks provide more capabilities to the attacker at the risk of possible detection at the endpoints. Equivalent to active wiretapping as defined in <a href="#RFC4949">[RFC4949]</a>.</dd>
+  <dt>Observation:</dt>
+  <dd style="margin-left: 8">Information collected directly from communications by an eavesdropper or observer. For example, the knowledge that &lt;alice@example.com&gt; sent a message to &lt;bob@example.com&gt; via SMTP taken from the headers of an observed SMTP message would be an observation.</dd>
+  <dt>Inference:</dt>
+  <dd style="margin-left: 8">Information derived from analysis of information collected directly from communications by an eavesdropper or observer. For example, the knowledge that a given web page was accessed by a given IP address, by comparing the size in octets of measured network flow records to fingerprints derived from known sizes of linked resources on the web servers involved, would be an inference.</dd>
+  <dt>Collaborator:</dt>
+  <dd style="margin-left: 8">An entity that is a legitimate participant in a communication, and provides information about that communication to an attacker. Collaborators may either deliberately or unwittingly cooperate with the attacker, in the latter case because the attacker has subverted the collaborator through technical, social, or other means.</dd>
+  <dt>Key Exfiltration:</dt>
+  <dd style="margin-left: 8">The transmission of cryptographic keying material for an encrypted communication from a collaborator, deliberately or unwittingly, to an attacker.</dd>
+  <dt>Content Exfiltration:</dt>
+  <dd style="margin-left: 8">The transmission of the content of a communication from a collaborator, deliberately or unwittingly, to an attacker.</dd>
+</dl>
+<p id="rfc.section.2.p.3">Data Minimization: With respect to protocol design, refers to the practice of only exposing the minimum amount of data or metadata necessary for the task supported by that protocol to the other endpoint(s) and/or devices along the path.</p>
+<h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> <a href="#responses" id="responses">Available Mitigations</a></h1>
+<p id="rfc.section.3.p.1">Given the threat model laid out in <a href="#RFC7624">[RFC7624]</a>., how should the Internet technical community respond to pervasive attack?  The cost and risk considerations discussed in it provide a guide to responses.  Namely, responses to passive attack should close off avenues for those attacks that are safe, scalable, and cheap, forcing the attacker to mount attacks that expose it to higher cost and risk.  Protocols and security measures protecting against active attacks must also limit the impact of compromise and malfeasance by avoiding systems which grant universal credentials. </p>
+<p id="rfc.section.3.p.2">In this section, we discuss a collection of high-level approaches to mitigating pervasive attacks.  These approaches are not meant to be exhaustive, but rather to provide general guidance to protocol designers in creating protocols that are resistant to pervasive attack.</p>
+<div id="rfc.figure.1"/>
+<div id="figops"/>
+<pre>
+   +--------------------------+----------------------------------------+
+   | Attack Class             | High-level mitigations                 |
+   +--------------------------+----------------------------------------+
+   | Passive observation      | Encryption for confidentiality         |
+   |                          |                                        |
+   | Passive inference        | Path differentiation                   |
+   |                          |                                        |
+   | Active                   | Authentication, monitoring             |
+   |                          |                                        |
+   | Metadata Analysis        | Data Minimization                      |
+   |                          |                                        |
+   | Static key exfiltration  | Encryption with per-session state      |
+   |                          | (PFS)                                  |
+   |                          |                                        |
+   | Dynamic key exfiltration | Transparency, validation of end        |
+   |                          | systems                                |
+   |                          |                                        |
+   | Content exfiltration     | Object encryption, distributed systems |
+   +--------------------------+----------------------------------------+
+</pre>
+<p class="figure">Figure 1: Table of Mitigations</p>
+<p id="rfc.section.3.p.3">The traditional mitigation to passive attack is to render content unintelligible to the attacker by applying encryption, for example, by using TLS or IPsec <a href="#RFC5246">[RFC5246]</a><a href="#RFC4301">[RFC4301]</a>.  Even without authentication, encryption will prevent a passive attacker from being able to read the encrypted content.  Exploiting unauthenticated encryption requires an active attack (man in the middle); with authentication, a key exfiltration attack is required.  For cryptographic systems providing forward secrecy, even exfiltration of long-term keys will not compromise data captured under session keys used before the exfiltration.</p>
+<p id="rfc.section.3.p.4">The additional capabilities of a pervasive passive attacker, however, require some changes in how protocol designers evaluate what information is encrypted.  In addition to directly collecting unencrypted data, a pervasive passive attacker can also make inferences about the content of encrypted messages based on what is observable.  For example, if a user typically visits a particular set of web sites, then a pervasive passive attacker observing all of the user&#8217;s behavior can track the user based on the hosts the user communicates with, even if the user changes IP addresses, and even if all of the connections are encrypted.</p>
+<p id="rfc.section.3.p.5">Thus, in designing protocols to be resistant to pervasive passive attacks, protocol designers should consider what information is left unencrypted in the protocol, and how that information might be correlated with other traffic.  Some of the data left unencrypted may be considered &#8220;metadata&#8221; within the context of a single protocol, as it provides adjunct information used for delivery or display, rather than the data directly created or consumed by protocol users.  This does not mean it is not useful to attackers, however, and when this metadata is not protected by encryption it may leak substantial amounts of information.  Data minimization  strategies should thus be applied to any data left unencrypted, whether it be payload or metadata.  Information that cannot be encrypted or omited should be be dissociated from other information.  For example, the TOR <a href="#TOR">[TOR]</a>overlay routing network anonymizes IP addresses by using multi-hop onion routing.</p>
+<p id="rfc.section.3.p.6">As with traditional, limited active attacks, a basic mitigation to pervasive active attack is to enable the endpoints of a communication to authenticate each other over the encrypted channel.  However, attackers that can mount pervasive active attacks can often subvert the authorities on which authentication systems rely.  Thus, in order to make authentication systems more resilient to pervasive attack, it is beneficial to monitor these authorities to detect misbehavior that could enable active attack.  For example, DANE and Certificate Transparency both provide mechanisms for detecting when a CA has issued a certificate for a domain name without the authorization of the holder of that domain name <a href="#RFC6962">[RFC6962]</a><a href="#RFC6698">[RFC6698]</a>. Other systems may use external notaries to detect certificate authority mismatch (e.g. Convergence <a href="#Convergence">[Convergence]</a>).</p>
+<p id="rfc.section.3.p.7">While encryption and authentication protect the security of individual sessions, these sessions may still leak information, such as IP addresses or server names, that a pervasive attacker can use to correlate sessions and derive additional information about the target.  Thus, pervasive attack highlights the need for anonymization technologies, which make correlation more difficult.  Typical approaches to anonymization against traffic analysis include:</p>
+<p id="rfc.section.3.p.8">o Aggregation: Routing sessions for many endpoints through a common mid-point (e.g, an HTTP proxy).  The midpoint appears as the origin of the communication when traffic analysis is conducted from points after it, so individual sources cannot be distinguished.  If traffic analysis is being conducted prior to the mid-point, all flows appear to be destined to the same point, which leaks very little information.  Even when traffic analysis is being performed both before and after the mid-point, simultaneous connections may make it difficult to corelate the traffic going into and out of the mid-point.  For this to be effective as a mitigation, traffic to the mid-point must be encrypted and traffic from the mid-point should be.</p>
+<p id="rfc.section.3.p.9">o Onion routing: Routing a session through several mid-points, rather than directly end-to-end, with encryption that guarantees that each node can only see the previous and next hops.  This ensures that the source and destination of a communication are never revealed simultaneously.</p>
+<p id="rfc.section.3.p.10">o Multi-path: Routing different sessions via different paths (even if they originate from the same endpoint).  This reduces the probability that the same attacker will be able to collect many sessions or associate them with the same individual.  If, for example, a device has both a cellular and 802.11 interface, routing some traffic across the cellular network and other traffic over the 802.11 interface means that traffic analysis conducted only with one network will be incomplete.  Even if conducted in both, it may be more difficult for the attacker to associate the traffic in each network with the other.  For this to be effective as a mitigation, signalling protocols which gather and transmit data about multiple interfaces (such as SIP) must be encrypted to avoid the information being used in cross-corelation.</p>
+<p id="rfc.section.3.p.11">An encrypted, authenticated session is safe from content-monitoring attacks in which neither end collaborates with the attacker, but can still be subverted by the endpoints.  The most common ciphersuites used for HTTPS today, for example, are based on using RSA encryption in such a way that if an attacker has the private key, the attacker can derive the session keys from passive observation of a session.  These ciphersuites are thus vulnerable to a static key exfiltration attack - if the attacker obtains the server&#8217;s private key once, then they can decrypt all past and future sessions for that server.</p>
+<p id="rfc.section.3.p.12">Static key exfiltration attacks are prevented by including ephemeral, per-session secret information in the keys used for a session.  Most IETF security protocols include modes of operation that have this property.  These modes are known in the literature under the heading &#8220;perfect forward secrecy&#8221; (PFS) because even if an adversary has all of the secrets for one session, the next session will use new, different secrets and the attacker will not be able to decrypt it.  The Internet Key Exchange (IKE) protocol used by IPsec supports PFS by default <a href="#RFC4306">[RFC4306]</a>, and TLS supports PFS via the use of specific ciphersuites <a href="#RFC5246">[RFC5246]</a>.</p>
+<p id="rfc.section.3.p.13">Dynamic key exfiltration cannot be prevented by protocol means.  By definition, any secrets that are used in the protocol will be transmitted to the attacker and used to decrypt what the protocol encrypts.  Likewise, no technical means will stop a willing collaborator from sharing keys with an attacker.  However, this attack model also covers &#8220;unwitting collaborators&#8221;, whose technical resources are collaborating with the attacker without their owners&#8217; knowledge.  This could happen, for example, if flaws are built into products or if malware is injected later on.</p>
+<p id="rfc.section.3.p.14">Standards can also define protocols that provide greater or lesser opportunity for dynamic key exfiltration.  Collaborators engaging in key exfiltration through a standard protocol will need to use covert channels in the protocol to leak information that can be used by the attacker to recover the key.  Such use of covert channels has been demonstrated for SSL, TLS, and SSH.  Any protocol bits that can be freely set by the collaborator can be used as a covert channel, including, for example, TCP options or unencrypted traffic sent before a STARTTLS message in SMTP or XMPP.  Protocol designers should consider what covert channels their protocols expose, and how those channels can be exploited to exfiltrate key information.</p>
+<p id="rfc.section.3.p.15">Content exfiltration has some similarity to the dynamic exfiltration case, in that nothing can prevent a collaborator from revealing what they know, and the mitigations against becoming an unwitting collaborator apply.  In this case, however, applications can limit what the collaborator is able to reveal.  For example, the S/MIME and PGP systems for secure email both deny intermediate servers access to certain parts of the message <a href="#RFC5750">[RFC5750]</a><a href="#RFC2015">[RFC2015]</a>.  Even if a server were to provide an attacker with full access, the attacker would still not be able to read the protected parts of the message.</p>
+<p id="rfc.section.3.p.16">Mechanisms like S/MIME and PGP are often referred to as &#8220;end-to-end&#8221;security mechanisms, as opposed to &#8220;hop-by-hop&#8221; or &#8220;end-to-middle&#8221; mechanisms like the use of SMTP over TLS.  These two different mechanisms address different types of attackers: Hop-by-hop mechanisms protect from attackers on the wire (passive or active), while end-to-end mechansims protect against attackers within intermediate nodes.  Thus, neither of these mechanisms provides complete protection by itself.  For example:</p>
+<p id="rfc.section.3.p.17">o Two users messaging via Facebook over HTTPS are protected against passive and active attackers in the network between the users and Facebook.  However, if Facebook is a collaborator in an exfiltration attack, their communications can still be monitored.  They would need to encrypt their messages end-to-end in order to protect themselves against this risk.</p>
+<p id="rfc.section.3.p.18">o Two users exchanging PGP-protected email have protected the content of their exchange from network attackers and intermediate servers, but the header information (e. g., To and From addresses) is unnecessarily exposed to passive and active attackers that can see communications among the mail agents handling the email messages.  These mail agents need to use hop-by-hop encryption and traffic analysis mitigation to address this risk.</p>
+<p id="rfc.section.3.p.19">Mechanisms such as S/MIME and PGP are also known as &#8220;object-based&#8221; security mechanisms (as opposed to &#8220;communications security&#8221; mechanisms), since they operate at the level of objects, rather than communications sessions.  Such secure object can be safely handled by intermediaries in order to realize, for example, store and forward messaging.  In the examples above, the encrypted instant messages or email messages would be the secure objects.</p>
+<p id="rfc.section.3.p.20">The mitigations to the content exfiltration case regard participants in the protocol as potential passive attackers themselves, and apply the mitigations discussed above with regard to passive attack.  Information that is not necessary for these participants to fulfill their role in the protocol can be encrypted, and other information can be anonymized.</p>
+<p id="rfc.section.3.p.21">In summary, many of the basic tools for mitigating pervasive attack already exist.  As Edward Snowden put it, &#8220;properly implemented strong crypto systems are one of the few things you can rely on&#8221;.  The task for the Internet community is to ensure that applications are able to use the strong crypto systems we have defined - for example, TLS with PFS ciphersuites - and that these properly implemented.  (And, one might add, turned on!) Some of this work will require architectural changes to applications, e. g., in order to limit the information that is exposed to servers.  In many other cases, however, the need is simply to make the best use we can of the cryptographic tools we have.</p>
+<p id="rfc.section.3.p.22">Some tools that we currently have can also be used for mitigating pervasive attacks, but since they have not generally been designed with this in mind, they may need elaboration or adjustment to be completely suitable.  The next section examines one common reason for such adjustment:  managing the integration of one mitigation with the environment in which it is deployed.</p>
+<h1 id="rfc.section.4"><a href="#rfc.section.4">4.</a> <a href="#interplay" id="interplay">Interplay among Mitigations</a></h1>
+<p id="rfc.section.4.p.1">One of the key considerations in selecting mitigations is how to manage the interplay among different mechanisms.  Care must be taken to avoid situations where a mitigation is rendered fruitless because of a different mitigation which is working at a different time scale or with a different aim.  </p>
+<p id="rfc.section.4.p.2">As an example, there is work in progress in  IEEE 802 to standardize a method for the randomization of MAC Addresses.  This work aims to enable a mitigation in which the MAC address varies as the device connects to different networks, or connects at different times. In theory, the randomization will mitigate tracking by MAC address. However, the randomization will be defeated if the adversary can link the randomized MAC address to other identifiers such as the interface identifier used in IPv6 addresses, the unique identifiers used in DHCP or DHCPv6, or unique identifiers used in various link-local discovery protocols. </p>
+<p id="rfc.section.4.p.3">For mitigations which rely on aggregation to separate the origin of traffic from its destination, care must be taken that the protocol mechanics do not expose origin IP through secondary means. <a href="#I-D.ietf-dnsop-edns-client-subnet">[I-D.ietf-dnsop-edns-client-subnet]</a> for example, documents a method to carry the IP address or subnet of a querying party through a recursive resolver to an authoritative resolver.  Even with a truncated IP address, this mechanism increases the likelihood that a pervasive monitor would be able to associate query traffic and responses.  If a client wished to ensure that its traffic did not expose this data, it would need to require that its stub resolver emit any privacy-sensitive queries with a source NETMASK set to 0, as detailed in Section 5.1 of <a href="#I-D.ietf-dnsop-edns-client-subnet">[I-D.ietf-dnsop-edns-client-subnet]</a>.  Given that setting this only occasionally might also be used a signal to observors, any client wishing to have any privacy sensitive traffic would, in essence have to emit this for every query.  While this would succeed at providing the required privacy, given the mechanism proposed, it would also mean no split-DNS adjustments in response would be possible for the privacy sensitive client.  </p>
+<h1 id="rfc.section.5"><a href="#rfc.section.5">5.</a> <a href="#IANA" id="IANA">IANA Considerations</a></h1>
+<p id="rfc.section.5.p.1">This memo makes no request of IANA.</p>
+<h1 id="rfc.section.6"><a href="#rfc.section.6">6.</a> <a href="#Security" id="Security">Security Considerations</a></h1>
+<p id="rfc.section.6.p.1">This memorandum describes a series of mitigations to the attacks described in <a href="#RFC7258">[RFC7258]</a>.  No such list could possibly be comprehensive, nor is the attack therein described the only possible attack.</p>
+<h1 id="rfc.section.7"><a href="#rfc.section.7">7.</a> <a href="#contributors-contributors" id="contributors-contributors">Contributors {Contributors}</a></h1>
+<p id="rfc.section.7.p.1">This document is derived in part from the work initially done on the Perpass mailing list and at the STRINT workshop.  Work from Brian Trammell, Bruce Schneier, Christian Huitema, Cullen Jennings, Daniel Borkmann, and Richard Barnes is incorporated here, as are ideas and commentary from Jeff Hodges, Phillip Hallam-Baker, and Stephen Farrell.</p>
+<h1 id="rfc.references"><a href="#rfc.references">8.</a> References</h1>
+<h1 id="rfc.references.1"><a href="#rfc.references.1">8.1.</a> Normative References</h1>
+<table>
+  <tbody>
+    <tr>
+      <td class="reference">
+        <b id="RFC2119">[RFC2119]</b>
+      </td>
+      <td class="top"><a>Bradner, S.</a>, "<a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC4949">[RFC4949]</b>
+      </td>
+      <td class="top"><a>Shirey, R.</a>, "<a href="http://tools.ietf.org/html/rfc4949">Internet Security Glossary, Version 2</a>", FYI 36, RFC 4949, DOI 10.17487/RFC4949, August 2007.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC6973">[RFC6973]</b>
+      </td>
+      <td class="top"><a>Cooper, A.</a>, <a>Tschofenig, H.</a>, <a>Aboba, B.</a>, <a>Peterson, J.</a>, <a>Morris, J.</a>, <a>Hansen, M.</a> and <a>R. Smith</a>, "<a href="http://tools.ietf.org/html/rfc6973">Privacy Considerations for Internet Protocols</a>", RFC 6973, DOI 10.17487/RFC6973, July 2013.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC7258">[RFC7258]</b>
+      </td>
+      <td class="top"><a>Farrell, S.</a> and <a>H. Tschofenig</a>, "<a href="http://tools.ietf.org/html/rfc7258">Pervasive Monitoring Is an Attack</a>", BCP 188, RFC 7258, DOI 10.17487/RFC7258, May 2014.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC7624">[RFC7624]</b>
+      </td>
+      <td class="top"><a>Barnes, R.</a>, <a>Schneier, B.</a>, <a>Jennings, C.</a>, <a>Hardie, T.</a>, <a>Trammell, B.</a>, <a>Huitema, C.</a> and <a>D. Borkmann</a>, "<a href="http://tools.ietf.org/html/rfc7624">Confidentiality in the Face of Pervasive Surveillance: A Threat Model and Problem Statement</a>", RFC 7624, DOI 10.17487/RFC7624, August 2015.</td>
+    </tr>
+  </tbody>
+</table>
+<h1 id="rfc.references.2"><a href="#rfc.references.2">8.2.</a> Informative References</h1>
+<table>
+  <tbody>
+    <tr>
+      <td class="reference">
+        <b id="Convergence">[Convergence]</b>
+      </td>
+      <td class="top"><a>M Marlinspike, .</a>, "<a href="http://convergenc.io">Convergence Project</a>", August 2011.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="I-D.ietf-dnsop-edns-client-subnet">[I-D.ietf-dnsop-edns-client-subnet]</b>
+      </td>
+      <td class="top"><a>Contavalli, C.</a>, <a>Gaast, W.</a>, <a>Lawrence, D.</a> and <a>W. Kumari</a>, "<a href="http://tools.ietf.org/html/draft-ietf-dnsop-edns-client-subnet-04">Client Subnet in DNS Queries</a>", Internet-Draft draft-ietf-dnsop-edns-client-subnet-04, September 2015.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC2015">[RFC2015]</b>
+      </td>
+      <td class="top"><a>Elkins, M.</a>, "<a href="http://tools.ietf.org/html/rfc2015">MIME Security with Pretty Good Privacy (PGP)</a>", RFC 2015, DOI 10.17487/RFC2015, October 1996.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC4301">[RFC4301]</b>
+      </td>
+      <td class="top"><a>Kent, S.</a> and <a>K. Seo</a>, "<a href="http://tools.ietf.org/html/rfc4301">Security Architecture for the Internet Protocol</a>", RFC 4301, DOI 10.17487/RFC4301, December 2005.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC4306">[RFC4306]</b>
+      </td>
+      <td class="top"><a>Kaufman, C.</a>, "<a href="http://tools.ietf.org/html/rfc4306">Internet Key Exchange (IKEv2) Protocol</a>", RFC 4306, DOI 10.17487/RFC4306, December 2005.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC5246">[RFC5246]</b>
+      </td>
+      <td class="top"><a>Dierks, T.</a> and <a>E. Rescorla</a>, "<a href="http://tools.ietf.org/html/rfc5246">The Transport Layer Security (TLS) Protocol Version 1.2</a>", RFC 5246, DOI 10.17487/RFC5246, August 2008.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC5750">[RFC5750]</b>
+      </td>
+      <td class="top"><a>Ramsdell, B.</a> and <a>S. Turner</a>, "<a href="http://tools.ietf.org/html/rfc5750">Secure/Multipurpose Internet Mail Extensions (S/MIME) Version 3.2 Certificate Handling</a>", RFC 5750, DOI 10.17487/RFC5750, January 2010.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC6698">[RFC6698]</b>
+      </td>
+      <td class="top"><a>Hoffman, P.</a> and <a>J. Schlyter</a>, "<a href="http://tools.ietf.org/html/rfc6698">The DNS-Based Authentication of Named Entities (DANE) Transport Layer Security (TLS) Protocol: TLSA</a>", RFC 6698, DOI 10.17487/RFC6698, August 2012.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC6962">[RFC6962]</b>
+      </td>
+      <td class="top"><a>Laurie, B.</a>, <a>Langley, A.</a> and <a>E. Kasper</a>, "<a href="http://tools.ietf.org/html/rfc6962">Certificate Transparency</a>", RFC 6962, DOI 10.17487/RFC6962, June 2013.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="STRINT">[STRINT]</b>
+      </td>
+      <td class="top"><a>S Farrell, .</a>, "<a href="https://www.w3.org/2014/strint/draft-iab-strint-report.html">Strint Workshop Report</a>", April 2014.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="TOR">[TOR]</b>
+      </td>
+      <td class="top"><a>The Tor Project</a>, "<a href="https://www.torproject.org/">Tor</a>", 2013.</td>
+    </tr>
+  </tbody>
+</table>
+<h1 id="rfc.authors">
+  <a href="#rfc.authors">Author's Address</a>
+</h1>
+<div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Ted Hardie</span> (editor)
+	  <span class="n hidden">
+		<span class="family-name">Hardie</span>
+	  </span>
+	</span>
+	<span class="org vcardline"></span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:ted.ietf@gmail.com">ted.ietf@gmail.com</a></span>
+
+  </address>
+</div>
+
+</body>
+</html>
