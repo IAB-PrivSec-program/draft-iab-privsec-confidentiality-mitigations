@@ -174,6 +174,18 @@ exhaustive, but rather to provide general guidance to protocol
 designers in creating protocols that are resistant to pervasive
 attack.
 
+Many of these are basic tools which
+already exist.  As Edward Snowden put it, "properly implemented strong
+crypto systems are one of the few things you can rely on".
+The task for the Internet community is to ensure that applications are
+able to use the strong crypto and other mitigations already available-
+and that these are properly implemented and commonly turned on.
+Some of this work will require architectural changes to applications, e. g., 
+in order to limit the information that is exposed to servers.  In many other cases, 
+however, the need is simply to make the best use we can of the cryptographic
+tools we have.
+
+
 ~~~~~~~~~~
    +--------------------------+----------------------------------------+
    | Attack Class             | High-level mitigations                 |
@@ -232,7 +244,6 @@ unencrypted, whether it be payload or metadata.  Information that cannot
 be encrypted or omited should be be dissociated from other
 information.  For example, the TOR {{TOR}}overlay routing network anonymizes
 IP addresses by using multi-hop onion routing.
-
 
 As with traditional, limited active attacks, a basic mitigation to
 pervasive active attack is to enable the endpoints of a communication
@@ -379,21 +390,8 @@ Information that is not necessary for these participants to fulfill
 their role in the protocol can be encrypted, and other information can
 be anonymized.
 
-In summary, many of the basic tools for mitigating pervasive attack
-already exist.  As Edward Snowden put it, "properly implemented strong
-crypto systems are one of the few things you can rely on".
-The task for the Internet community is to ensure that applications are
-able to use the strong crypto systems we have defined - for example,
-TLS with PFS ciphersuites - and that these properly implemented.
-(And, one might add, turned on!) Some of this work will require
-architectural changes to applications, e. g., in order to limit the
-information that is exposed to servers.  In many other cases, however,
-the need is simply to make the best use we can of the cryptographic
-tools we have.
-
-Some tools that we currently have can also be used for mitigating 
-pervasive attacks, but since they have not generally been designed
-with this in mind, they may need elaboration or adjustment to be
+The tools that we currently have have not generally been designed
+with mitigation in mind, so they may need elaboration or adjustment to be
 completely suitable.  The next section examines one common reason
 for such adjustment:  managing the integration of one mitigation
 with the environment in which it is deployed.
