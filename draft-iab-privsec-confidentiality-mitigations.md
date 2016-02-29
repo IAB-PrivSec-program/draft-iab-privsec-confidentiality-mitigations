@@ -398,14 +398,14 @@ completely suitable.  The next section examines one common reason
 for such adjustment:  managing the integration of one mitigation
 with the environment in which it is deployed.
 
-Interplay among Mitigations {#interplay}
+Combining Mitigations {#combining}
 =========================
 
 One of the key considerations in selecting mitigations is how to 
-manage the interplay among different mechanisms.  Care must be taken
+combine different mechanisms to achieve the best results.  Care must be taken
 to avoid situations where a mitigation is rendered fruitless because 
-of a different mitigation which is working at a different time scale or
-with a different aim.  
+of a different mechanism (or even a different mitigation) which is working at a 
+different time scale or with a different aim.  
 
 As an example, there is work in progress in  IEEE 802 to standardize 
 a method for the randomization of MAC Addresses.  This work aims 
@@ -416,7 +416,9 @@ address. However, the randomization will be defeated if the adversary
 can link the randomized MAC address to other identifiers such as the 
 interface identifier used in IPv6 addresses, the unique
 identifiers used in DHCP or DHCPv6, or unique identifiers used in
-various link-local discovery protocols. 
+various link-local discovery protocols. The best way to combine these
+mitigations, in other words, is to ensure that the identifier shifts 
+at different layers are well coordinated.
 
 For mitigations which rely on aggregation to separate the origin of
 traffic from its destination, care must be taken that the protocol
