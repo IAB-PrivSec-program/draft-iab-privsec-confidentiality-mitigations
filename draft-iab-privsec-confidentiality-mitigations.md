@@ -356,8 +356,9 @@ Mechanisms like S/MIME and PGP are often referred to as
 different mechanisms address different types of attackers: Hop-by-hop
 mechanisms protect from attackers on the wire (passive or active),
 while end-to-end mechansims protect against attackers within
-intermediate nodes.  Thus, neither of these mechanisms provides
-complete protection by itself.  For example:
+intermediate nodes as well as those on the wire.  Even end-to-end
+mechanisms are not complete protection in themselves, as intermediate
+nodes can still access some metadata.  For example:
 
  o Two users messaging via Facebook over HTTPS are protected against
 passive and active attackers in the network between the users and
