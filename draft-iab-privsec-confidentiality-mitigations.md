@@ -151,13 +151,13 @@ Content Exfiltration:
 : The transmission of the content of a communication from a collaborator, deliberately or unwittingly, to an attacker.
 
 Data Minimization: 
-With respect to protocol design, refers to the practice of only exposing the minimum amount of data or metadata necessary for the task supported by that protocol to the other endpoint(s) and/or devices along the path.
+: With respect to protocol design, refers to the practice of only exposing the minimum amount of data or metadata necessary for the task supported by that protocol to the other endpoint(s) and/or devices along the path.
 
 Available Mitigations	{#responses}
 =====================
 
 Given the threat model laid out in
-{{RFC7624}}., how should the Internet technical community respond 
+{{RFC7624}}, how should the Internet technical community respond 
 to pervasive attack?  The cost and risk considerations discussed in 
 it provide a guide to responses.  Namely, responses to passive attack 
 should close off avenues for those attacks that are safe, scalable, 
@@ -230,7 +230,7 @@ protected by encryption it may leak substantial amounts of information.
 Data minimization  strategies should thus be applied to any data left 
 unencrypted, whether it be payload or metadata.  Information that cannot 
 be encrypted or omited should be be dissociated from other
-information.  For example, the TOR {{TOR}}overlay routing network anonymizes
+information.  For example, the TOR{{TOR}} overlay routing network anonymizes
 IP addresses by using multi-hop onion routing.
 
 
