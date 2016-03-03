@@ -266,7 +266,7 @@ Thus, pervasive attack highlights the need for anonymization
 technologies, which make correlation more difficult.  Typical
 approaches to anonymization against traffic analysis include:
 
- o Aggregation: Routing sessions for many endpoints through a common
+ - Aggregation: Routing sessions for many endpoints through a common
  mid-point (e.g, an HTTP proxy).  The midpoint appears as
  the origin of the communication when traffic analysis is conducted
  from points after it, so individual sources cannot be distinguished.
@@ -278,13 +278,13 @@ approaches to anonymization against traffic analysis include:
  For this to be effective as a mitigation, traffic to the mid-point must
  be encrypted and traffic from the mid-point should be.
 
- o Onion routing: Routing a session through several mid-points, rather
+ - Onion routing: Routing a session through several mid-points, rather
 than directly end-to-end, with encryption that guarantees that each
 node can only see the previous and next hops.  This ensures that
 the source and destination of a communication are never revealed
 simultaneously.
 
- o Multi-path: Routing different sessions via different paths (even if
+ - Multi-path: Routing different sessions via different paths (even if
  they originate from the same endpoint).  This reduces the probability
  that the same attacker will be able to collect many sessions or associate
  them with the same individual.  If, for example, a device has both a
@@ -328,17 +328,17 @@ are collaborating with the attacker without their owners' knowledge.
 This could happen, for example, if flaws are built into products or if
 malware is injected later on.
 
- Standards can also define protocols that provide greater or lesser
- opportunity for dynamic key exfiltration.  Collaborators engaging in
- key exfiltration through a standard protocol will need to use covert
- channels in the protocol to leak information that can be used by the
- attacker to recover the key.  Such use of covert channels has been
- demonstrated for SSL, TLS, and SSH.  Any protocol bits
- that can be freely set by the collaborator can be used as a covert
- channel, including, for example, TCP options or unencrypted traffic
- sent before a STARTTLS message in SMTP or XMPP.  Protocol designers
- should consider what covert channels their protocols expose, and how
- those channels can be exploited to exfiltrate key information.
+Standards can also define protocols that provide greater or lesser
+opportunity for dynamic key exfiltration.  Collaborators engaging in
+key exfiltration through a standard protocol will need to use covert
+channels in the protocol to leak information that can be used by the
+attacker to recover the key.  Such use of covert channels has been
+demonstrated for SSL, TLS, and SSH.  Any protocol bits
+that can be freely set by the collaborator can be used as a covert
+channel, including, for example, TCP options or unencrypted traffic
+sent before a STARTTLS message in SMTP or XMPP.  Protocol designers
+should consider what covert channels their protocols expose, and how
+those channels can be exploited to exfiltrate key information.
 
 Content exfiltration has some similarity to the dynamic exfiltration
 case, in that nothing can prevent a collaborator from revealing what
@@ -360,7 +360,7 @@ intermediate nodes as well as those on the wire.  Even end-to-end
 mechanisms are not complete protection in themselves, as intermediate
 nodes can still access some metadata.  For example:
 
- o Two users messaging via Facebook over HTTPS are protected against
+ - Two users messaging via Facebook over HTTPS are protected against
 passive and active attackers in the network between the users and
 Facebook.  However, if Facebook is a collaborator in an exfiltration
 attack, their communications can still be monitored.  They would need
@@ -368,7 +368,7 @@ to encrypt their messages end-to-end in order to protect themselves
 against this risk.
 
 
-o Two users exchanging PGP-protected email have protected the content
+ - Two users exchanging PGP-protected email have protected the content
 of their exchange from network attackers and intermediate servers, but
 the header information (e. g., To and From addresses) is
 unnecessarily exposed to passive and active attackers that can see
