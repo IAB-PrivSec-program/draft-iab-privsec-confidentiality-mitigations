@@ -1,8 +1,8 @@
 ---
 title: Confidentiality in the Face of Pervasive Surveillance
 abbrev: privsec-mitigations 
-docname: draft-iab-privsec-confidentiality-mitigations-latest
-date: 2015-10-14
+docname: draft-iab-privsec-confidentiality-mitigations-04
+date: 2016-03-07
 category: info
 
 ipr: trust200902
