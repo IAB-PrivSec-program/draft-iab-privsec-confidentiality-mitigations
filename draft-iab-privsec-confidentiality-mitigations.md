@@ -57,7 +57,23 @@ informative:
     author:
       organization: The Tor Project
     date: 2013
-
+  TorPaper:
+    target: http://static.usenix.org/event/sec04/tech/full_papers/dingledine/dingledine.pdf
+    title: "Tor: The Second-Generation Onion Router"
+    author:
+      -
+        ins: R. Dingledine
+        name: Roger Dingledine
+        org: The Free Haven Project
+      -
+        ins: N. Mathewson
+        name: Nick Mathewson
+        org: The Free Haven Project
+      -
+        ins: P. Syverson
+        name: Paul Syverson
+        org: Naval Research Lab
+    date: 2004
 
 
 
@@ -242,7 +258,7 @@ protected by encryption it may leak substantial amounts of information.
 Data minimization  strategies should thus be applied to any data left 
 unencrypted, whether it be payload or metadata.  Information that cannot 
 be encrypted or omited should be be dissociated from other
-information.  For example, the TOR{{TOR}} overlay routing network anonymizes
+information.  For example, the TOR {{TOR}} overlay routing network anonymizes
 IP addresses by using multi-hop onion routing.
 
 As with traditional, limited active attacks, a basic mitigation to
@@ -282,7 +298,9 @@ approaches to anonymization against traffic analysis include:
 than directly end-to-end, with encryption that guarantees that each
 node can only see the previous and next hops.  This ensures that
 the source and destination of a communication are never revealed
-simultaneously.
+simultaneously. (Note that onion routing anonymity guarantees depend
+on an attacker being unable to control many of the routing nodes
+{{TorPaper}}).
 
  - Multi-path: Routing different sessions via different paths (even if
  they originate from the same endpoint).  This reduces the probability
