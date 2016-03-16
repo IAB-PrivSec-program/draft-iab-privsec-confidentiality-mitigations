@@ -382,7 +382,11 @@ mechanisms), since they operate at the level of objects, rather than
 communications sessions.  Such secure object can be safely handled by
 intermediaries in order to realize, for example, store and forward
 messaging.  In the examples above, the encrypted instant messages or
-email messages would be the secure objects.
+email messages would be the secure objects. Hop-to-hop security
+mechanisms may be susceptible to downgrade attacks (e.g.,
+STARTTLS-secured SMTP has been downgraded by intermediate network
+nodes {{WaPo-STARTTLS}}) in which case end-to-end mechanisms are
+advised.
 
 The mitigations to the content exfiltration case regard participants
 in the protocol as potential passive attackers themselves, and apply
