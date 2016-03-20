@@ -57,6 +57,17 @@ informative:
     author:
       organization: The Tor Project
     date: 2013
+  WaPo-STARTTLS:
+    target: https://www.washingtonpost.com/news/the-switch/wp/2014/10/28/mobile-isp-thwarted-customers-attempts-to-send-encrypted-e-mails-research-finds/
+    title: Mobile ISP Cricket was thwarting encrypted emails, researchers find
+    author:
+      -
+        ins: N. Scola
+        name: Nancy Scola
+      -
+        ins: A. Soltani
+        name: Ashkan Soltani
+    date: 2014
 
 
 
@@ -382,7 +393,11 @@ mechanisms), since they operate at the level of objects, rather than
 communications sessions.  Such secure object can be safely handled by
 intermediaries in order to realize, for example, store and forward
 messaging.  In the examples above, the encrypted instant messages or
-email messages would be the secure objects.
+email messages would be the secure objects. Hop-to-hop security
+mechanisms may be susceptible to downgrade attacks (e.g.,
+STARTTLS-secured SMTP has been downgraded by intermediate network
+nodes {{WaPo-STARTTLS}}) in which case end-to-end mechanisms are
+advised.
 
 The mitigations to the content exfiltration case regard participants
 in the protocol as potential passive attackers themselves, and apply
