@@ -57,6 +57,23 @@ informative:
     author:
       organization: The Tor Project
     date: 2013
+    TorPaper:
++    target: http://static.usenix.org/event/sec04/tech/full_papers/dingledine/dingledine.pdf
++    title: "Tor: The Second-Generation Onion Router"
++    author:
++      -
++        ins: R. Dingledine
++        name: Roger Dingledine
++        org: The Free Haven Project
++      -
++        ins: N. Mathewson
++        name: Nick Mathewson
++        org: The Free Haven Project
++      -
++        ins: P. Syverson
++        name: Paul Syverson
++        org: Naval Research Lab
++    date: 2004
   WaPo-STARTTLS:
     target: https://www.washingtonpost.com/news/the-switch/wp/2014/10/28/mobile-isp-thwarted-customers-attempts-to-send-encrypted-e-mails-research-finds/
     title: Mobile ISP Cricket was thwarting encrypted emails, researchers find
@@ -293,7 +310,9 @@ approaches to anonymization against traffic analysis include:
 than directly end-to-end, with encryption that guarantees that each
 node can only see the previous and next hops.  This ensures that
 the source and destination of a communication are never revealed
-simultaneously.
+simultaneously. Note, however, that onion routing anonymity guarantees depend
++on an attacker being unable to control many of the routing nodes
++{{TorPaper}}.
 
  - Multi-path: Routing different sessions via different paths (even if
  they originate from the same endpoint).  This reduces the probability
