@@ -1,6 +1,6 @@
 # Confidentiality in the Face of Pervasive Surveillance
 
-This is the working area for the Individual internet-draft, "Confidentiality in the Face of Pervasive Surveillance".
+This is the working area for the IAB Privacy and Security Program internet-draft, "Confidentiality in the Face of Pervasive Surveillance".
 
 * [Editor's copy](https://IAB-PrivSec-program.github.io/draft-iab-privsec-confidentiality-mitigations/)
 * [Individual Draft] (https://tools.ietf.org/html/draft-iab-privsec-confidentiality-mitigations)
