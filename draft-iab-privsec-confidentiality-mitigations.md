@@ -91,12 +91,10 @@ informative:
 
 --- abstract
 
-The IAB has published {{RFC7624}} in response to several revelations 
-of pervasive attack on Internet communications.  In this document we 
-survey the mitigations to those threats which are currently available 
-or which might plausibly be deployed.  We discuss these primarily in 
-the context of Internet protocol design, focusing on robustness to 
-pervasive monitoring and avoidance of unwanted cross-mitigation impacts.
+The IAB has published [RFC7624] in response to several revelations of pervasive
+attack on Internet communications.  This document surveys the most plausible
+mitigations to those threats currently available to the designers of Internet
+protocols.
 
 --- middle
 
