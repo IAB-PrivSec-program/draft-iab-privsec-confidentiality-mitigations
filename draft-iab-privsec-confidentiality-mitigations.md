@@ -57,23 +57,23 @@ informative:
     author:
       organization: The Tor Project
     date: 2013
-    TorPaper:
-      target: http://static.usenix.org/event/sec04/tech/full_papers/dingledine/dingledine.pdf
-      title: "Tor: The Second-Generation Onion Router"
-      author:
-        -
-          ins: R. Dingledine
-          name: Roger Dingledine
-          org: The Free Haven Project
-        -
-          ins: N. Mathewson
-          name: Nick Mathewson
-          org: The Free Haven Project
-        -
-          ins: P. Syverson
-          name: Paul Syverson
-          org: Naval Research Lab
-      date: 2004
+  TorPaper:
+    target: http://static.usenix.org/event/sec04/tech/full_papers/dingledine/dingledine.pdf
+    title: "Tor: The Second-Generation Onion Router"
+    author:
+      -
+        ins: R. Dingledine
+        name: Roger Dingledine
+        org: The Free Haven Project
+      -
+        ins: N. Mathewson
+        name: Nick Mathewson
+        org: The Free Haven Project
+      -
+        ins: P. Syverson
+        name: Paul Syverson
+        org: Naval Research Lab
+    date: 2004
   WaPo-STARTTLS:
     target: https://www.washingtonpost.com/news/the-switch/wp/2014/10/28/mobile-isp-thwarted-customers-attempts-to-send-encrypted-e-mails-research-finds/
     title: Mobile ISP Cricket was thwarting encrypted emails, researchers find
