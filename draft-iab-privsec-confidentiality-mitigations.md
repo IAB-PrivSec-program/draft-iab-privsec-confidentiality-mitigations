@@ -208,7 +208,7 @@ crypto systems are one of the few things you can rely on".
 The task for the Internet community is to ensure that applications are
 able to use the strong crypto and other mitigations already available-
 and that these are properly implemented and commonly turned on.
-Some of this work will require architectural changes to applications, e. g., 
+Some of this work will require architectural changes to applications, e.g., 
 in order to limit the information that is exposed to servers.  In many other cases, 
 however, the need is simply to make the best use we can of the cryptographic
 tools we have.
@@ -302,7 +302,7 @@ approaches to anonymization against traffic analysis include:
  flows appear to be destined to the same point, which leaks very little
  information.  Even when traffic analysis is being performed both
  before and after the mid-point, simultaneous connections may make it 
- difficult to corelate the traffic going into and out of the mid-point.
+ difficult to correlate the traffic going into and out of the mid-point.
  For this to be effective as a mitigation, traffic to the mid-point must
  be encrypted and traffic from the mid-point should be.
 
@@ -325,7 +325,7 @@ simultaneously. Note, however, that onion routing anonymity guarantees depend
  the traffic in each network with the other.  For this to be effective
  as a mitigation, signalling protocols which gather and transmit data
  about multiple interfaces (such as SIP) must be encrypted to avoid the
- information being used in cross-corelation.
+ information being used in cross-correlation.
 
 An encrypted, authenticated session is safe from content-monitoring
 attacks in which neither end collaborates with the attacker, but can
@@ -381,11 +381,11 @@ were to provide an attacker with full access, the attacker would still
 not be able to read the protected parts of the message.
 
 Mechanisms like S/MIME and PGP are often referred to as
-"end-to-end"security mechanisms, as opposed to "hop-by-hop" or
+"end-to-end" security mechanisms, as opposed to "hop-by-hop" or
 "end-to-middle" mechanisms like the use of SMTP over TLS.  These two
 different mechanisms address different types of attackers: Hop-by-hop
 mechanisms protect from attackers on the wire (passive or active),
-while end-to-end mechansims protect against attackers within
+while end-to-end mechanisms protect against attackers within
 intermediate nodes as well as those on the wire.  Even end-to-end
 mechanisms are not complete protection in themselves, as intermediate
 nodes can still access some metadata.  For example:
@@ -400,7 +400,7 @@ against this risk.
 
  - Two users exchanging PGP-protected email have protected the content
 of their exchange from network attackers and intermediate servers, but
-the header information (e. g., To and From addresses) is
+the header information (e.g., To and From addresses) is
 unnecessarily exposed to passive and active attackers that can see
 communications among the mail agents handling the email messages.
 These mail agents need to use hop-by-hop encryption and traffic
@@ -428,7 +428,7 @@ be anonymized.
 The tools that we currently have have not generally been designed
 with mitigation in mind, so they may need elaboration or adjustment to be
 completely suitable.  The next section examines one common reason
-for such adjustment:  managing the integration of one mitigation
+for such adjustment: managing the integration of one mitigation
 with the environment in which it is deployed.
 
 Interplay among Mitigations {#interplay}
@@ -440,7 +440,7 @@ to avoid situations where a mitigation is rendered fruitless because
 of a different mitigation which is working at a different time scale or
 with a different aim.  
 
-As an example, there is work in progress in  IEEE 802 to standardize 
+As an example, there is work in progress in IEEE 802 to standardize 
 a method for the randomization of MAC Addresses.  This work aims 
 to enable a mitigation in which the MAC address varies as the device
 connects to different networks, or connects at different times. In
@@ -462,7 +462,7 @@ query traffic and responses.  If a client wished to ensure that its
 traffic did not expose this data, it would need to require that its
 stub resolver emit any privacy-sensitive queries with a source
 NETMASK set to 0, as detailed in Section 5.1 of {{I-D.ietf-dnsop-edns-client-subnet}}.  Given that setting
-this only occasionally might also be used a signal to observors,
+this only occasionally might also be used a signal to observers,
 any client wishing to have any privacy sensitive traffic would,
 in essence have to emit this for every query.  While this would
 succeed at providing the required privacy, given the mechanism
