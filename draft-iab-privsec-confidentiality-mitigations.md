@@ -329,13 +329,13 @@ simultaneously. Note, however, that onion routing anonymity guarantees depend
 
 An encrypted, authenticated session is safe from content-monitoring
 attacks in which neither end collaborates with the attacker, but can
-still be subverted by the endpoints.  The most common ciphersuites
-used for HTTPS today, for example, are based on using RSA encryption
+still be subverted by the endpoints.  Ciphersuites
+used for HTTPS may be based on using RSA encryption
 in such a way that if an attacker has the private key, the attacker
 can derive the session keys from passive observation of a session.
 These ciphersuites are thus vulnerable to a static key exfiltration
 attack - if the attacker obtains the server's private key once, then
-they can decrypt all past and future sessions for that server.
+they can decrypt all past and future sessions for that server.  
 
 Static key exfiltration attacks are prevented by including ephemeral,
 per-session secret information in the keys used for a session.  Most
