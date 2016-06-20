@@ -376,18 +376,17 @@ completely suitable.  The next section examines one common reason
 for such adjustment:  managing the integration of one mitigation
 with the environment in which it is deployed.
 
-Interplay among Mitigations {#interplay}
+Interplay among Mechanisms {#interplay}
 =========================
 
 One of the key considerations in selecting mitigations is how to 
 manage the interplay among different mechanisms.  Care must be taken
 to avoid situations where a mitigation is rendered fruitless because 
-of a different mitigation which is working at a different time scale or
-with a different aim.  
+of mechanisms which working at a different time scale or with a different aim.  
 
 As an example, there is work in progress in  IEEE 802 to standardize 
 a method for the randomization of MAC Addresses.  This work aims 
-to enable a mitigation in which the MAC address varies as the device
+to enable the MAC address to vary as the device
 connects to different networks, or connects at different times. In
 theory, the randomization will mitigate tracking by MAC
 address. However, the randomization will be defeated if the adversary
