@@ -167,6 +167,8 @@ tools we have.
 | Content exfiltration     | Object encryption, distributed systems  |
 {: #figops title="Table of Mitigations"}
 
+## Encryption
+
 The traditional mitigation to passive attack is to render content
 unintelligible to the attacker by applying encryption, for example, by
 using TLS or IPsec {{RFC5246}}{{RFC4301}}.  Even without authentication,
@@ -176,6 +178,72 @@ active attack (man in the middle); with authentication, a key
 exfiltration attack is required.  For cryptographic systems providing
 forward secrecy, even exfiltration of long-term keys will not compromise
 data captured under session keys used before the exfiltration.
+
+### Forward Secrecy
+
+An encrypted, authenticated session is safe from content-monitoring
+attacks in which neither end collaborates with the attacker, but can
+still be subverted by the endpoints.  The most common ciphersuites
+used for HTTPS today, for example, are based on using RSA encryption
+in such a way that if an attacker has the private key, the attacker
+can derive the session keys from passive observation of a session.
+These ciphersuites are thus vulnerable to a static key exfiltration
+attack - if the attacker obtains the server's private key once, then
+they can decrypt all past and future sessions for that server.
+
+Static key exfiltration attacks are prevented by including ephemeral,
+per-session secret information in the keys used for a session.  Most
+IETF security protocols include modes of operation that have this
+property.  These modes are known in the literature under the heading
+"perfect forward secrecy" (PFS) because even if an adversary has all
+of the secrets for one session, the next session will use new,
+different secrets and the attacker will not be able to decrypt it.
+The Internet Key Exchange (IKE) protocol used by IPsec supports PFS by
+default {{RFC4306}}, and TLS supports PFS via the use of specific
+ciphersuites {{RFC5246}}.
+
+### Covert Channel Reduction
+
+Dynamic key exfiltration cannot be prevented by protocol means.  By
+definition, any secrets that are used in the protocol will be
+transmitted to the attacker and used to decrypt what the protocol
+encrypts.  Likewise, no technical means will stop a willing
+collaborator from sharing keys with an attacker.  However, this attack
+model also covers "unwitting collaborators", whose technical resources
+are collaborating with the attacker without their owners' knowledge.
+This could happen, for example, if flaws are built into products or if
+malware is injected later on.
+
+Standards can also define protocols that provide greater or lesser
+opportunity for dynamic key exfiltration.  Collaborators engaging in
+key exfiltration through a standard protocol will need to use covert
+channels in the protocol to leak information that can be used by the
+attacker to recover the key.  Such use of covert channels has been
+demonstrated for SSL, TLS, and SSH.  Any protocol bits
+that can be freely set by the collaborator can be used as a covert
+channel, including, for example, TCP options or unencrypted traffic
+sent before a STARTTLS message in SMTP or XMPP.  Protocol designers
+should consider what covert channels their protocols expose, and how
+those channels can be exploited to exfiltrate key information.
+
+## Auditing Authentication
+
+As with traditional, limited active attacks, a basic mitigation to
+pervasive active attack is to enable the endpoints of a communication
+to authenticate each other over the encrypted channel.  However, attackers
+that can mount pervasive active attacks can often subvert the authorities
+on which authentication systems rely.
+
+Thus, in order to make authentication
+systems more resilient to pervasive attack, it is beneficial to
+monitor these authorities to detect misbehavior that could enable
+active attack.  For example, DANE and Certificate Transparency both
+provide mechanisms for detecting when a CA has issued a certificate
+for a domain name without the authorization of the holder of that
+domain name {{RFC6962}}{{RFC6698}}. Other systems may use external
+notaries to detect certificate authority mismatch (e.g. Convergence {{Convergence}}).
+
+## Metadata Minimization
 
 The additional capabilities of a pervasive passive attacker, however,
 require some changes in how protocol designers evaluate what
@@ -200,21 +268,10 @@ protected by encryption it may leak substantial amounts of information.
 Data minimization  strategies should thus be applied to any data left
 unencrypted, whether it be payload or metadata.  Information that cannot
 be encrypted or omited should be be dissociated from other
-information.  For example, the TOR{{TOR}} overlay routing network anonymizes
+information.  For example, the TOR overlay routing network {{TOR}} anonymizes
 IP addresses by using multi-hop onion routing.
 
-As with traditional, limited active attacks, a basic mitigation to
-pervasive active attack is to enable the endpoints of a communication
-to authenticate each other over the encrypted channel.  However, attackers
-that can mount pervasive active attacks can often subvert the authorities
-on which authentication systems rely.  Thus, in order to make authentication
-systems more resilient to pervasive attack, it is beneficial to
-monitor these authorities to detect misbehavior that could enable
-active attack.  For example, DANE and Certificate Transparency both
-provide mechanisms for detecting when a CA has issued a certificate
-for a domain name without the authorization of the holder of that
-domain name {{RFC6962}}{{RFC6698}}. Other systems may use external
-notaries to detect certificate authority mismatch (e.g. Convergence {{Convergence}}).
+## Anonymization
 
 While encryption and authentication protect the security of individual
 sessions, these sessions may still leak information, such as IP
@@ -237,12 +294,12 @@ approaches to anonymization against traffic analysis include:
  be encrypted and traffic from the mid-point should be.
 
  - Onion routing: Routing a session through several mid-points, rather
-than directly end-to-end, with encryption that guarantees that each
-node can only see the previous and next hops.  This ensures that
-the source and destination of a communication are never revealed
-simultaneously. Note, however, that onion routing anonymity guarantees depend
-on an attacker being unable to control many of the routing nodes
-{{TorPaper}}.
+ than directly end-to-end, with encryption that guarantees that each
+ node can only see the previous and next hops.  This ensures that the
+ source and destination of a communication are never revealed
+ simultaneously. Note, however, that onion routing anonymity
+ guarantees depend on an attacker being unable to control many of the
+ routing nodes {{TorPaper}}.
 
  - Multi-path: Routing different sessions via different paths (even if
  they originate from the same endpoint).  This reduces the probability
@@ -257,48 +314,7 @@ on an attacker being unable to control many of the routing nodes
  about multiple interfaces (such as SIP) must be encrypted to avoid the
  information being used in cross-correlation.
 
-An encrypted, authenticated session is safe from content-monitoring
-attacks in which neither end collaborates with the attacker, but can
-still be subverted by the endpoints.  The most common ciphersuites
-used for HTTPS today, for example, are based on using RSA encryption
-in such a way that if an attacker has the private key, the attacker
-can derive the session keys from passive observation of a session.
-These ciphersuites are thus vulnerable to a static key exfiltration
-attack - if the attacker obtains the server's private key once, then
-they can decrypt all past and future sessions for that server.
-
-Static key exfiltration attacks are prevented by including ephemeral,
-per-session secret information in the keys used for a session.  Most
-IETF security protocols include modes of operation that have this
-property.  These modes are known in the literature under the heading
-"perfect forward secrecy" (PFS) because even if an adversary has all
-of the secrets for one session, the next session will use new,
-different secrets and the attacker will not be able to decrypt it.
-The Internet Key Exchange (IKE) protocol used by IPsec supports PFS by
-default {{RFC4306}}, and TLS supports PFS via the use of specific
-ciphersuites {{RFC5246}}.
-
-Dynamic key exfiltration cannot be prevented by protocol means.  By
-definition, any secrets that are used in the protocol will be
-transmitted to the attacker and used to decrypt what the protocol
-encrypts.  Likewise, no technical means will stop a willing
-collaborator from sharing keys with an attacker.  However, this attack
-model also covers "unwitting collaborators", whose technical resources
-are collaborating with the attacker without their owners' knowledge.
-This could happen, for example, if flaws are built into products or if
-malware is injected later on.
-
-Standards can also define protocols that provide greater or lesser
-opportunity for dynamic key exfiltration.  Collaborators engaging in
-key exfiltration through a standard protocol will need to use covert
-channels in the protocol to leak information that can be used by the
-attacker to recover the key.  Such use of covert channels has been
-demonstrated for SSL, TLS, and SSH.  Any protocol bits
-that can be freely set by the collaborator can be used as a covert
-channel, including, for example, TCP options or unencrypted traffic
-sent before a STARTTLS message in SMTP or XMPP.  Protocol designers
-should consider what covert channels their protocols expose, and how
-those channels can be exploited to exfiltrate key information.
+## End-to-End Protection
 
 Content exfiltration has some similarity to the dynamic exfiltration
 case, in that nothing can prevent a collaborator from revealing what
@@ -327,7 +343,6 @@ attack, their communications can still be monitored.  They would need
 to encrypt their messages end-to-end in order to protect themselves
 against this risk.
 
-
  - Two users exchanging PGP-protected email have protected the content
 of their exchange from network attackers and intermediate servers, but
 the header information (e.g., To and From addresses) is
@@ -355,12 +370,6 @@ Information that is not necessary for these participants to fulfill
 their role in the protocol can be encrypted, and other information can
 be anonymized.
 
-The tools that we currently have have not generally been designed
-with mitigation in mind, so they may need elaboration or adjustment to be
-completely suitable.  The next section examines one common reason
-for such adjustment: managing the integration of one mitigation
-with the environment in which it is deployed.
-
 Interplay among Mechanisms {#interplay}
 =========================
 
@@ -368,6 +377,12 @@ One of the key considerations in selecting mitigations is how to
 manage the interplay among different mechanisms.  Care must be taken
 to avoid situations where a mitigation is rendered fruitless because
 of mechanisms which working at a different time scale or with a different aim.
+
+The tools that we currently have have not generally been designed with
+all of these mitigations in mind, so they may need elaboration or
+adjustment to be completely suitable.  Thus, managing the integration
+of one mitigation with the environment in which it is deployed is
+critical.
 
 As an example, there is work in progress in IEEE 802 to standardize
 a method for the randomization of MAC Addresses.  This work aims
@@ -387,7 +402,9 @@ for example, documents a method to carry the IP address or subnet
 of a querying party through a recursive resolver to an authoritative
 resolver.  Even with a truncated IP address, this mechanism increases
 the likelihood that a pervasive monitor would be able to associate
-query traffic and responses.  If a client wished to ensure that its
+query traffic and responses.
+
+If a client wished to ensure that its
 traffic did not expose this data, it would need to require that its
 stub resolver emit any privacy-sensitive queries with a source
 NETMASK set to 0, as detailed in Section 5.1 of {{I-D.ietf-dnsop-edns-client-subnet}}.  Given that setting
