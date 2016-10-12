@@ -1,6 +1,6 @@
 ---
 title: Confidentiality in the Face of Pervasive Surveillance
-abbrev: privsec-mitigations 
+abbrev: privsec-mitigations
 docname: draft-iab-privsec-confidentiality-mitigations-04
 date: 2016-03-07
 category: info
@@ -104,8 +104,8 @@ Introduction        {#intro}
 To ensure that the Internet can be trusted by users, it is necessary
 for the Internet technical community to address the vulnerabilities
 exploited in the attacks document in {{RFC7258}} and the threats
-described in {{RFC7624}}.  The goal of this document is to describe 
-more precisely the mitigations available for those threats and to 
+described in {{RFC7624}}.  The goal of this document is to describe
+more precisely the mitigations available for those threats and to
 lay out the interactions among them should they be deployed in combination.
 
 
@@ -122,21 +122,21 @@ do not refer to the effort used to mount the attack; a "passive attack"
 is any attack that accesses a flow but does not modify it, while an
 "active attack" is any attack that modifies a flow.  Some passive attacks
 involve active interception and modifications of devices, rather than simple
-access to the medium.  
+access to the medium.
 
 Available Mitigations	{#responses}
 =====================
 
 Given the threat model laid out in
-{{RFC7624}}, how should the Internet technical community respond 
-to pervasive attack?  The cost and risk considerations discussed in 
-it provide a guide to responses.  Namely, responses to passive attack 
-should close off avenues for those attacks that are safe, scalable, 
+{{RFC7624}}, how should the Internet technical community respond
+to pervasive attack?  The cost and risk considerations discussed in
+it provide a guide to responses.  Namely, responses to passive attack
+should close off avenues for those attacks that are safe, scalable,
 and cheap, forcing the attacker to mount attacks
 that expose it to higher cost and risk.  Protocols and security measures
-protecting against active attacks must also limit the impact of 
+protecting against active attacks must also limit the impact of
 compromise and malfeasance by avoiding systems which grant universal
-credentials. 
+credentials.
 
 
 In this section, we discuss a collection of high-level approaches to
@@ -151,8 +151,8 @@ crypto systems are one of the few things you can rely on".
 The task for the Internet community is to ensure that applications are
 able to use the strong crypto and other mitigations already available-
 and that these are properly implemented and commonly turned on.
-Some of this work will require architectural changes to applications, e.g., 
-in order to limit the information that is exposed to servers.  In many other cases, 
+Some of this work will require architectural changes to applications, e.g.,
+in order to limit the information that is exposed to servers.  In many other cases,
 however, the need is simply to make the best use we can of the cryptographic
 tools we have.
 
@@ -204,22 +204,22 @@ all of the connections are encrypted.
 Thus, in designing protocols to be resistant to pervasive passive
 attacks, protocol designers should consider what information is left
 unencrypted in the protocol, and how that information might be
-correlated with other traffic.  Some of the data left unencrypted may be 
-considered "metadata" within the context of a single protocol, as it 
-provides adjunct information used for delivery or display, rather than the 
+correlated with other traffic.  Some of the data left unencrypted may be
+considered "metadata" within the context of a single protocol, as it
+provides adjunct information used for delivery or display, rather than the
 data directly created or consumed by protocol users.  This does not mean
-it is not useful to attackers, however, and when this metadata is not 
+it is not useful to attackers, however, and when this metadata is not
 protected by encryption it may leak substantial amounts of information.
-Data minimization  strategies should thus be applied to any data left 
-unencrypted, whether it be payload or metadata.  Information that cannot 
+Data minimization  strategies should thus be applied to any data left
+unencrypted, whether it be payload or metadata.  Information that cannot
 be encrypted or omited should be be dissociated from other
 information.  For example, the TOR{{TOR}} overlay routing network anonymizes
 IP addresses by using multi-hop onion routing.
 
 As with traditional, limited active attacks, a basic mitigation to
 pervasive active attack is to enable the endpoints of a communication
-to authenticate each other over the encrypted channel.  However, attackers 
-that can mount pervasive active attacks can often subvert the authorities 
+to authenticate each other over the encrypted channel.  However, attackers
+that can mount pervasive active attacks can often subvert the authorities
 on which authentication systems rely.  Thus, in order to make authentication
 systems more resilient to pervasive attack, it is beneficial to
 monitor these authorities to detect misbehavior that could enable
@@ -244,7 +244,7 @@ approaches to anonymization against traffic analysis include:
  If traffic analysis is being conducted prior to the mid-point, all
  flows appear to be destined to the same point, which leaks very little
  information.  Even when traffic analysis is being performed both
- before and after the mid-point, simultaneous connections may make it 
+ before and after the mid-point, simultaneous connections may make it
  difficult to correlate the traffic going into and out of the mid-point.
  For this to be effective as a mitigation, traffic to the mid-point must
  be encrypted and traffic from the mid-point should be.
@@ -262,8 +262,8 @@ on an attacker being unable to control many of the routing nodes
  that the same attacker will be able to collect many sessions or associate
  them with the same individual.  If, for example, a device has both a
  cellular and 802.11 interface, routing some traffic across the cellular
- network and other traffic over the 802.11 interface means that traffic 
- analysis conducted only with one network will be incomplete.  Even if 
+ network and other traffic over the 802.11 interface means that traffic
+ analysis conducted only with one network will be incomplete.  Even if
  conducted in both, it may be more difficult for the attacker to associate
  the traffic in each network with the other.  For this to be effective
  as a mitigation, signalling protocols which gather and transmit data
@@ -377,21 +377,21 @@ with the environment in which it is deployed.
 Interplay among Mechanisms {#interplay}
 =========================
 
-One of the key considerations in selecting mitigations is how to 
+One of the key considerations in selecting mitigations is how to
 manage the interplay among different mechanisms.  Care must be taken
-to avoid situations where a mitigation is rendered fruitless because 
-of mechanisms which working at a different time scale or with a different aim.  
+to avoid situations where a mitigation is rendered fruitless because
+of mechanisms which working at a different time scale or with a different aim.
 
-As an example, there is work in progress in IEEE 802 to standardize 
-a method for the randomization of MAC Addresses.  This work aims 
+As an example, there is work in progress in IEEE 802 to standardize
+a method for the randomization of MAC Addresses.  This work aims
 to enable the MAC address to vary as the device
 connects to different networks, or connects at different times. In
 theory, the randomization will mitigate tracking by MAC
 address. However, the randomization will be defeated if the adversary
-can link the randomized MAC address to other identifiers such as the 
+can link the randomized MAC address to other identifiers such as the
 interface identifier used in IPv6 addresses, the unique
 identifiers used in DHCP or DHCPv6, or unique identifiers used in
-various link-local discovery protocols. 
+various link-local discovery protocols.
 
 For mitigations which rely on aggregation to separate the origin of
 traffic from its destination, care must be taken that the protocol
@@ -409,7 +409,7 @@ any client wishing to have any privacy sensitive traffic would,
 in essence have to emit this for every query.  While this would
 succeed at providing the required privacy, given the mechanism
 proposed, it would also mean no split-DNS adjustments in response
-would be possible for the privacy sensitive client.  
+would be possible for the privacy sensitive client.
 
 
 
@@ -425,13 +425,13 @@ Security Considerations {#Security}
 
 This memorandum describes a series of mitigations to the
 attacks described in {{RFC7258}}.  No such list could possibly
-be comprehensive, nor is the attack therein described the 
+be comprehensive, nor is the attack therein described the
 only possible attack.
 
 Contributors {Contributors}
 ============
 
-This document is derived in part from the work initially done on 
+This document is derived in part from the work initially done on
 the Perpass mailing list and at the STRINT workshop.  Work from
 Brian Trammell, Bruce Schneier, Christian Huitema, Cullen Jennings,
 Daniel Borkmann, and Richard Barnes is incorporated here, as are
@@ -439,5 +439,3 @@ ideas and commentary from Jeff Hodges, Phillip Hallam-Baker, and
 Stephen Farrell.
 
 --- back
-
-
