@@ -156,28 +156,15 @@ in order to limit the information that is exposed to servers.  In many other cas
 however, the need is simply to make the best use we can of the cryptographic
 tools we have.
 
-
-~~~~~~~~~~
-   +--------------------------+----------------------------------------+
-   | Attack Class             | High-level mitigations                 |
-   +--------------------------+----------------------------------------+
-   | Passive observation      | Encryption for confidentiality         |
-   |                          |                                        |
-   | Passive inference        | Path differentiation                   |
-   |                          |                                        |
-   | Active                   | Authentication, monitoring             |
-   |                          |                                        |
-   | Metadata Analysis        | Data Minimization                      |
-   |                          |                                        |
-   | Static key exfiltration  | Encryption with per-session state      |
-   |                          | (PFS)                                  |
-   |                          |                                        |
-   | Dynamic key exfiltration | Transparency, validation of end        |
-   |                          | systems                                |
-   |                          |                                        |
-   | Content exfiltration     | Object encryption, distributed systems |
-   +--------------------------+----------------------------------------+
-~~~~~~~~~~
+| Attack Class             | High-level mitigations                  |
+|:-------------------------|:----------------------------------------|
+| Passive observation      | Encryption for confidentiality          |
+| Passive inference        | Path differentiation                    |
+| Active                   | Authentication, monitoring              |
+| Metadata Analysis        | Data Minimization                       |
+| Static key exfiltration  | Encryption with per-session state (PFS) |
+| Dynamic key exfiltration | Transparency, validation of end systems |
+| Content exfiltration     | Object encryption, distributed systems  |
 {: #figops title="Table of Mitigations"}
 
 The traditional mitigation to passive attack is to render content
