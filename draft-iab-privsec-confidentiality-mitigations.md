@@ -85,8 +85,15 @@ informative:
         ins: A. Soltani
         name: Ashkan Soltani
     date: 2014
-
-
+  CLINIC:
+    target:
+    title: "I Know Why You Went to the Clinic: Risks and Realization of HTTPS Traffic Analysis"
+    author:
+      - ins: B. Miller
+      - ins: L. Huang
+      - ins: A. D. Joseph
+      - ins: J. D. Tygar
+    date: 2014-03-03
 
 
 --- abstract
@@ -270,6 +277,15 @@ unencrypted, whether it be payload or metadata.  Information that cannot
 be encrypted or omited should be be dissociated from other
 information.  For example, the TOR overlay routing network {{TOR}} anonymizes
 IP addresses by using multi-hop onion routing.
+
+### Length Hiding
+
+One fundamental limitation of encryption is that it exposes the size
+of the plaintext that protects.  A passive attacker can use this to
+obtain information about the plaintext {{CLINIC}}.  Protocols that use
+encryption can provide the ability to pad plaintext.  This enables
+control over the size of ciphertext by endpoints, which can be used to
+reduce the information available to passive attackers.
 
 ## Anonymization
 
